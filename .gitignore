@@ -1,0 +1,22 @@
+# IDEA
+.idea/
+*.iml
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Output files and dirs
+bin/
+out/
+build*/
+
+*.class
+*.out
+*.run
+
+*.pyc
+*.pyo
+
