@@ -29,12 +29,42 @@ function doProcess_v2(s, acceptZero, fromIndex, toIndex, cache) {
     if (result.length > toIndex - i + 1) break;
     if (!acceptZero && s[i] === '0') continue;
     var j = toIndex + 1;
-    // last = Math.max(i, last);
     while (--j > last && j > i) {
       if (s[i] === s[j]) {
-        // if (j - i + 1 == result.length && s[i] < result[0]) break;
         if (j > last) last = j;
         var sub = doProcess_v2(s, true, i + 1, j - 1, cache);
+        var tmp = s[j] + sub + s[j];
+        if (compare(result, tmp) < 0) result = tmp;
+        break;
+      }
+    }
+    if (result.length == 1 && s[i] > result) result = s[i];
+  }
+
+  cache[fromIndex][toIndex] = result;
+  return result;
+}
+
+function doProcess_v3(s, acceptZero, fromIndex, toIndex, cache, expectedSize) {
+  if (fromIndex == toIndex) return s[fromIndex];
+  if (fromIndex > toIndex) return '';
+
+  var i = 0;
+  var result = cache[fromIndex][toIndex];
+  if (result != undefined) return result;
+  else result = '0';
+
+  var last = fromIndex;
+  for (i = fromIndex; i <= toIndex; i++) {
+    var maxSize = toIndex - i + 1;
+    if (result.length > maxSize || expectedSize > maxSize) break;    
+    if (!acceptZero && s[i] === '0') continue;
+
+    var j = toIndex + 1;
+    while (--j > last && j > i) {
+      if (s[i] === s[j]) {
+        if (j > last) last = j;
+        var sub = doProcess_v2(s, true, i + 1, j - 1, cache, result.length > 1 ? result.length - 2 : 0);
         var tmp = s[j] + sub + s[j];
         if (compare(result, tmp) < 0) result = tmp;
         break;
@@ -52,10 +82,7 @@ function doProcess_v4(s, acceptZero, i, j, cache, expectedSize) {
   if (i == j) return s[i];
 
   var result = cache[i][j];
-  if (result != undefined) {
-    // console.log("found in cache: " + i + "," + j);
-    return result;
-  }
+  if (result != undefined) return result;
 
   if (!acceptZero && s[i] === '0') {
     var size = j - i;
@@ -63,19 +90,12 @@ function doProcess_v4(s, acceptZero, i, j, cache, expectedSize) {
   }
 
   if (s[i] === s[j]) {
-    // console.log(i + "=" + j);
     var sub = doProcess_v4(s, true, i+1, j-1, cache, expectedSize - 2);
     result = s[i] + sub + s[j];
   } else {
-    // console.log(i + "!=" + j);
     var size = j - i;
-    if (expectedSize > size) {
-      // console.log("ignore " + i + "," + j);
-      return '';
-    }
+    if (expectedSize > size) return '';
     var left = doProcess_v4(s, false, i, j-1, cache, expectedSize);
-    // console.log("i=" + i + ", j=" + j + ", exptected=" + expectedSize + ", left=" + left);
-    // if (left.length < expectedSize) { console.log("left size < exptected size"); return ''; }
     var right = doProcess_v4(s, false, i+1, j, cache, Math.max(left.length, expectedSize));
     result = max(left, right);
   }
@@ -89,9 +109,9 @@ function findSymmetricSubstring(s) {
   for (var i = 0; i < n; i++) {
     x[i] = new Array(n);
   }
-  // return doProcess_v3_lps(s, x);
   // return doProcess_v4(s, false, 0, n-1, x, 1);
-  return doProcess_v2(s, false, 0, s.length - 1, x);
+  // return doProcess_v2(s, false, 0, s.length - 1, x);
+  return doProcess_v3(s, false, 0, s.length - 1, x, 1);
 }
 
 // process.stdin.resume();
@@ -108,22 +128,22 @@ function findSymmetricSubstring(s) {
 //   console.log(findSymmetricSubstring(s))
 // });
 
-console.log(findSymmetricSubstring("128921"));
-console.log(findSymmetricSubstring("12312"));
-console.log(findSymmetricSubstring("133122"));
-console.log(findSymmetricSubstring("1352475813"));
-console.log(findSymmetricSubstring("1352471358"));
-console.log(findSymmetricSubstring("138247966"));
-console.log(findSymmetricSubstring("17409"));
-console.log(findSymmetricSubstring("13524713587788"));
-console.log(findSymmetricSubstring("233288"));
-console.log(findSymmetricSubstring("000008000"));
-console.log(findSymmetricSubstring("0000"));
-console.log(findSymmetricSubstring("002332880"));
-console.log(findSymmetricSubstring("002339080632880"));
-console.log(findSymmetricSubstring("48156358304135644341"));
-console.log(findSymmetricSubstring("2400472561"));
-console.log(findSymmetricSubstring("25495298763"));
+// console.log(findSymmetricSubstring("128921"));
+// console.log(findSymmetricSubstring("12312"));
+// console.log(findSymmetricSubstring("133122"));
+// console.log(findSymmetricSubstring("1352475813"));
+// console.log(findSymmetricSubstring("1352471358"));
+// console.log(findSymmetricSubstring("138247966"));
+// console.log(findSymmetricSubstring("17409"));
+// console.log(findSymmetricSubstring("13524713587788"));
+// console.log(findSymmetricSubstring("233288"));
+// console.log(findSymmetricSubstring("000008000"));
+// console.log(findSymmetricSubstring("0000"));
+// console.log(findSymmetricSubstring("002332880"));
+// console.log(findSymmetricSubstring("002339080632880"));
+// console.log(findSymmetricSubstring("48156358304135644341"));
+// console.log(findSymmetricSubstring("2400472561"));
+// console.log(findSymmetricSubstring("25495298763"));
 
 function makeRandomInput(size) {
   var text = "";
