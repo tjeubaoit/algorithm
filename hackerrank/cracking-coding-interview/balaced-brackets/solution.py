@@ -9,7 +9,7 @@ def is_matched(expression):
         if c == '{':
             st.append('}')
         elif c == '[':
-            st.append(']'):
+            st.append(']')
         elif c == '(':
             st.append(')')            
         else:
