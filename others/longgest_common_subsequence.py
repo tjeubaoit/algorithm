@@ -56,19 +56,19 @@ test4 = "Nhà ở Thủ Đức còn dư 1phong trống cần cho thuê ở khu v
 test5 = "Nhà mình ở Thủ Đức còn dư 1phong trống cần cho thuê ở khu vực linh đông giá 1tr6 . + mình cần nữ thuê + giờ giấc tự do ,cho nấu ăn trong phòng . + diện + nước 150k /ng ( ko kèm tủ lạnh ... + phòng có ban công rộng rãi thoáng mát ,có cửa sổ . + nhà gần siêu thị ,chợ ,xe buýt đi mấy bước là tới . × Bn nào quan tâm liên hệ sdt 0933180556"
 
 r = lcs1(test1, test3)
-print len(test1)
-print r
-print len(r)/float(len(test1)) * 100
+print(len(test1))
+print(r)
+print(len(r)/float(len(test1)) * 100)
 
 test6 = "Một phòng trong chung cư 335 Cầu Giấy ₫2,750,000 - Hà Nội Phòng 20m2, có điều hòa nóng lạnh, sàn gỗ. Cho thuê làm văn phòng hoặc ở. Điện nước theo giá nhà nước. sđth: 0981940359"
 test7 = "Một phòng trong chung cư 335 Cầu Giấy ₫2,750,000 - Hà Nội Phòng 20m2, có điều hòa nóng lạnh, sàn gỗ. Cho thuê làm văn phòng hoặc ở. Điện nước theo giá nhà nước. 0981940359"
 # print lcs1  (test6, test7)
 r = lcs1(test6, test7)
-print r
-print len(r)/float(len(test6)) * 100
+print(r)
+print(len(r)/float(len(test6)) * 100)
 
 X = "22442"
 Y = "44222"
-print "Length of LCS is ", lcs(X, Y)
+print("Length of LCS is ", lcs(X, Y))
  
 # This code is contributed by Nikhil Kumar Singh(nickzuck_0
