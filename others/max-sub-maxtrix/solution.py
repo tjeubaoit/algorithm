@@ -26,10 +26,10 @@ def find_max_sub_seq(a, size):
     return max_so_far, sub
  
 
-########################
-# O(n^3) complexity
-########################    
 def find_max_sub_matrix_better(a, m, n):
+    """
+    O(n3) complexity
+    """
     msf = MIN_VALUE
     sub = ((0, 0), (0, 0))
       
@@ -47,10 +47,10 @@ def find_max_sub_matrix_better(a, m, n):
     return msf, sub
     
 
-########################
-# O(n^3) complexity
-########################
 def find_max_sub_matrix(a, m, n):
+    """
+    O(n3) complexity
+    """
     msf = MIN_VALUE
     sub = ((0, 0), (0, 0))
       
