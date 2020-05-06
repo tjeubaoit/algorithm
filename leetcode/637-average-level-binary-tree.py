@@ -20,11 +20,9 @@ class Solution:
                 node = q.get()
                 s += node.val
                 c += 1
-                if node.left: q.put(node.left)
-                if node.right: q.put(node.right)
+                if node.left:
+                    q.put(node.left)
+                if node.right:
+                    q.put(node.right)
             ans.append(s / c)
         return ans
-
-
-if __name__ == '__main__':
-    ret = Solution().averageOfLevels([])
