@@ -23,20 +23,18 @@ class Solution:
     @staticmethod
     def reverse_linked_list(head: ListNode):
         nxt, pre = None, None
-        node = head
-        while node:
-            nxt = node.next
-            node.next = pre
-            pre = node
-            node = nxt
+        while head:
+            nxt = head.next
+            head.next = pre
+            pre = head
+            head = nxt
         return pre
 
 
 def print_list(head: ListNode):
-    node = head
-    while node:
-        print(node.val, end='->' if node.next else '')
-        node = node.next
+    while head:
+        print(head.val, end='->' if head.next else '')
+        head = head.next
     print()
 
 
