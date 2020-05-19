@@ -1,4 +1,8 @@
 # Definition for a binary tree node.
+from typing import List
+
+
+# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -24,7 +28,7 @@ class Solution:
                 st.append((node.right, xsum))
         return False
 
-    def pathSum(self, root: TreeNode, sum: int):
+    def pathSum(self, root: TreeNode, sum: int) -> List[int]:
         """
         Path Sum II
         """
