@@ -6,39 +6,39 @@ class MyQueue:
         """
         Initialize your data structure here.
         """
-        self.first = []
-        self.second = []
+        self.s1 = []
+        self.s2 = []
 
     def push(self, x: int) -> None:
         """
         Push element x to the back of queue.
         """
-        self.first.append(x)
+        self.s1.append(x)
 
     def pop(self) -> int:
         """
         Removes the element from in front of queue and returns that element.
         """
         self.ensure_second_not_empty()
-        return self.second.pop()
+        return self.s2.pop()
 
     def peek(self) -> int:
         """
         Get the front element.
         """
         self.ensure_second_not_empty()
-        return self.second[-1] if self.second else None
+        return self.s2[-1] if self.s2 else None
 
     def empty(self) -> bool:
         """
         Returns whether the queue is empty.
         """
-        return len(self.first) == 0 and len(self.second) == 0
+        return len(self.s1) == 0 and len(self.s2) == 0
 
     def ensure_second_not_empty(self):
-        if not self.second:
-            while self.first:
-                self.second.append(self.first.pop())
+        if not self.s2:
+            while self.s1:
+                self.s2.append(self.s1.pop())
 
 
 # Your MyQueue object will be instantiated and called as such:
