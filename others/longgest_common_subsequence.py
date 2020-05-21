@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 # Dynamic Programming implementation of LCS problem
- 
+
+
 def lcs(X , Y):
     # find the length of the strings
     m = len(X)
     n = len(Y)
  
     # declaring the array for storing the dp values
-    L = [[None]*(n+1) for i in xrange(m+1)]
+    L = [[None]*(n+1) for i in range(m+1)]
  
     """Following steps build L[m+1][n+1] in bottom up fashion
     Note: L[i][j] contains length of LCS of X[0..i-1]
@@ -26,6 +27,7 @@ def lcs(X , Y):
     # return Y[0:m-1]
     return L[m][n]
 #end of function lcs
+
 
 def lcs1(S,T):
     m = len(S)
