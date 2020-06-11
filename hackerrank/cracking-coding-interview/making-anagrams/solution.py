@@ -5,4 +5,4 @@ def number_needed(w1, w2):
     return total
 
 
-print number_needed('cde', 'abc')
+print(number_needed('cde', 'abc'))

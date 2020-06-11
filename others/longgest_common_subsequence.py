@@ -3,7 +3,7 @@
 
 
 def lcs(X , Y):
-    # find the length of the strings
+    # find the length of the Strings
     m = len(X)
     n = len(Y)
  

@@ -25,7 +25,8 @@ def bm_preprocess(s, p, os, ms, n, m): # the Boyer-Moore algorithm
     j = 0
     while (j <= n-m):
         i = m-1
-        while (i >= 0) and (p[i] == s[j+i]): i = i-1
+        while (i >= 0) and (p[i] == s[j+i]): 
+            i = i-1
         if (i == -1):
             # print "Match at position ", j
             i = 0
