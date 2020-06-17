@@ -10,7 +10,25 @@ class Solution:
         dummy = ListNode(0)
         dummy.next = head
 
-        nxt, pre = None, dummy
+        pre, i = dummy, 1
+        while i < m:
+            pre = head
+            head = head.next
+            i += 1
+
+        # pbm: pointer before m
+        # pm: pointer at m
+        pbm, pm, nxt = pre, head, None
+        while i <= n:
+            nxt = head.next
+            head.next = pre
+            pre = head
+            head = nxt
+            i += 1
+
+        pbm.next = pre
+        pm.next = head
+        return dummy.next
 
     @staticmethod
     def reverse_linked_list(head: ListNode):
@@ -33,10 +51,10 @@ def print_list(head: ListNode):
 if __name__ == '__main__':
     fake = ListNode(-1)
     node = fake
-    for i in range(0, 5):
+    for i in range(0, 6):
         new_node = ListNode(i+1)
         node.next = new_node
         node = new_node
 
     ret = Solution().reverseBetween(fake.next, 2, 4)
-    print(ret)
+    print_list(ret)
