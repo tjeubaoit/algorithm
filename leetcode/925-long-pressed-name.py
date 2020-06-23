@@ -1,40 +1,51 @@
 class Solution:
     def isLongPressedName(self, name: str, typed: str) -> bool:
-        return self.groupSolution(name, typed)
+        return self.twoPointersSolution(name, typed)
 
     def twoPointersSolution(self, name, typed):
-        pass
-
-    def groupSolution(self, name: str, typed: str) -> bool:
-        if not name and not typed:
-            return True
-        if not name or not typed:
-            return False
-
-        cname = self.compress(name)
-        ctyped = self.compress(typed)
-        if len(cname) != len(ctyped):
-            return False
-        # print(cname)
-        # print(ctyped)
-
-        for i in range(0, len(cname)):
-            s1, c1 = cname[i]
-            s2, c2 = ctyped[i]
-            if s1 != s2 or c1 > c2:
+        j = 0
+        for i in range(len(name)):
+            if j == len(typed):
                 return False
-
+            if name[i] != typed[j]:
+                if i == 0:
+                    return False
+                # Discard remain same values
+                while j < len(typed) and typed[j] == name[i-1]:
+                    j += 1
+                if j == len(typed) or typed[j] != name[i]:
+                    return False
+            j += 1
+        for i in range(j, len(typed)-1):
+            if typed[i] != typed[i+1]:
+                return False
         return True
 
-    def compress(self, strs):
-        s1 = []
-        last = strs[0]
-        count = 0
-        for c in strs:
-            if c != last:
-                s1.append((last, count))
-                last = c
-                count = 1
-            else:
-                count += 1
-        return s1
+    # Could not pass latest test cases
+    def groupSolution(self, name: str, typed: str) -> bool:
+        def groupify(s):
+            groups = []
+            i = 0
+            for j in range(1, len(s)):
+                if s[j] != s[i]:
+                    groups.append((s[i], j-i))
+                    i = j
+            if i < len(s):
+                groups.append((s[i], len(s)-i))
+            return groups
+
+        gname = groupify(name)
+        gtyped = groupify(typed)
+        if len(gname) != len(gtyped):
+            return False
+
+        for i in range(len(gname)):
+            if gname[i][0] != gtyped[i][0] or gname[i][1] > gtyped[i][1]:
+                return False
+        return True
+
+
+if __name__ == '__main__':
+    name = "zlexya"
+    typed = "aazlllllllllllllleexxxxxxxxxxxxxxxya"
+    print(Solution().isLongPressedName(name, typed))
