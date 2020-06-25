@@ -1,5 +1,6 @@
 import math
 
+
 def count_median(arr, i, j, n, orders):
     size = j + 1 - i
     med_pos = math.ceil(size/2)

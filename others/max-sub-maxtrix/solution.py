@@ -13,7 +13,7 @@ def find_max_sub_seq(a, size):
         if max_ending_here < 0:
             max_ending_here = 0
             s = i + 1
-        elif (max_so_far < max_ending_here):
+        elif max_so_far < max_ending_here:
             max_so_far = max_ending_here
             sub = (s, i)
             
