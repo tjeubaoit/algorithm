@@ -1,0 +1,11 @@
+if __name__ == '__main__':
+    tests = [
+        ([2, 2, 3, 4], 2),
+        ([1, 2, 2, 3, 3, 3], 3),
+        ([2, 2, 2, 3, 3], -1)
+    ]
+    for nums, expected in tests:
+        ret = Solution().findLucky(nums)
+        if ret != expected:
+            print(nums, ret)
+            break
