@@ -20,7 +20,6 @@ def isValid(s):
     if len(cts) < 2:
         return 'YES'
     if ct[0] < ct[1]:
-        cts[1]*(len(cts)-1) +
         for i in range(1, len(cts)-1):
             if ct[i] != ct[i+1]:
                 return 'NO'
