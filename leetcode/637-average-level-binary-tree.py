@@ -15,14 +15,11 @@ class Solution:
         q.put(root)
         ans = []
         while not q.empty():
-            s, c = 0, 0
-            for i in range(0, q.qsize()):
+            total, size = 0, q.qsize()
+            for _ in range(size):
                 node = q.get()
-                s += node.val
-                c += 1
-                if node.left:
-                    q.put(node.left)
-                if node.right:
-                    q.put(node.right)
-            ans.append(s / c)
+                total += node.val
+                if node.left: q.put(node.left)
+                if node.right: q.put(node.right)
+            ans.append(total/size)
         return ans
