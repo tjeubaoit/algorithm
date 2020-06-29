@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Dynamic Programming implementation of LCS problem
+# Dynamic Programming Implementation of LCS problem
 
 
 def lcs(X , Y):

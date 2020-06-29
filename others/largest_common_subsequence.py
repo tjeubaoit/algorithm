@@ -1,4 +1,4 @@
-# Dynamic Programming implementation of LCS problem
+# Dynamic Programming Implementation of LCS problem
 def compare(s1, s2):
     n1 = len(s1)
     n2 = len(s2)
