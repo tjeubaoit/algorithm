@@ -1,17 +1,16 @@
 class Solution {
     public int subarraysDivByK(int[] A, int K) {
-        int N = A.length;
-        int[] P = new int[N+1];
-        for (int i = 0; i < N; ++i)
-            P[i+1] = P[i] + A[i];
-
+        // map from cumulative sum's modulo to its appear times
         int[] count = new int[K];
-        for (int x: P)
-            count[(x % K + K) % K]++;
-
-        int ans = 0;
-        for (int v: count)
-            ans += v * (v - 1) / 2;
+        count[0] = 1;
+        int ans = 0, sum = 0;
+        for (int x : A) {
+            sum += x;
+            // Redundant + K because in Java mod function 
+            // may return negative value
+            int idx = (sum % K + K) % K;
+            ans += count[idx]++;
+        }
         return ans;
     }
 }
