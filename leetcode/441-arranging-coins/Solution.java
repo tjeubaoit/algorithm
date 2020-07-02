@@ -17,18 +17,21 @@ class Solution {
     }
 
     // O(NlogN) solution   
-    public int arrangeCoins(int n) {
-        long lo = 1, hi = n; int target = n;
+    public long arrangeCoins(int n) {
+        int lo = 1, hi = n;
         while (lo <= hi) {
-            long m = lo + (hi-lo)/2;
-            long value = m*(m+1)/2;
-            if (value == target)
-                return (int) m;
-            else if (value > n) 
-                hi = m - 1;
-            else 
-                lo = m + 1;
+            int m = lo + (hi - lo) / 2;
+            int s = m * (m + 1) / 2;
+            if (n == s) return m;
+            else if (n - s < 0) hi = m - 1;
+            else lo = m + 1;
         }
-        return (int)lo - 1;
+        return lo - 1;
+    }
+
+    public long arrangeCoins2(int n) {
+        long c = 2 * (long) n;
+        double v = (-1 + Math.sqrt(1 + 4 * c)) / 2;
+        return (int) Math.floor(v);
     }
 }
